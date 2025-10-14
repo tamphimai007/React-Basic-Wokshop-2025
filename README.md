@@ -183,6 +183,10 @@ export default PersonnelList;
 
 https://github.com/pmndrs/zustand
 
+```bash
+npm install zustand
+```
+
 /store/useDutyStore.js
 
 การสร้าง Store
