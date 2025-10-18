@@ -11,9 +11,10 @@ const dutyStore = (set) => ({
     // fn body
     try {
       const personnel = await api.get("/personnel");
-
+      const locations = await api.get('/locations')
       set({
         personnel: personnel,
+        locations:locations
       });
 
       
