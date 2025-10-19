@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/layout/Header";
 import LocationsList from "./components/locations/LocationsList";
 import MapView from "./components/map/MapView";
@@ -9,8 +9,10 @@ import useDutyStore from "./store/useDutyStore";
 // rafce
 const App = () => {
   // JS
+  const [adding, setAdding] = useState(false);
+
   const fetchAll = useDutyStore((state) => state.fetchAll);
-  
+
   useEffect(() => {
     // fn body
     fetchAll();
@@ -19,9 +21,8 @@ const App = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       <PersonelList />
-
       <div className="flex flex-col flex-1">
-        <Header />
+        <Header adding={adding} setAdding={setAdding} />
 
         <div className="flex flex-1 overflow-hidden">
           <MapView />
