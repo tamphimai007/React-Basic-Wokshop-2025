@@ -5,6 +5,7 @@ import MapView from "./components/map/MapView";
 import PersonelList from "./components/people/PersonelList";
 import axios from "axios";
 import useDutyStore from "./store/useDutyStore";
+import AddLocationModal from "./components/locations/AddLocationModal";
 
 // rafce
 const App = () => {
@@ -33,6 +34,14 @@ const App = () => {
           <LocationsList />
         </div>
       </div>
+      {pending && (
+        <AddLocationModal
+          lat={pending.lat}
+          lng={pending.lng}
+          setAdding={setAdding}
+          setPending={setPending}
+        />
+      )}
     </div>
   );
 };
