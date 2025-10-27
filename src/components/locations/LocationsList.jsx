@@ -5,7 +5,16 @@ import useDutyStore from "../../store/useDutyStore";
 const LocationsList = () => {
   // JS
   const locations = useDutyStore((s) => s.locations);
-  // console.log(locations);
+  const assignPerson = useDutyStore((state) => state.assignPerson);
+  const assignments = useDutyStore((state) => state.assignments);
+
+  console.log(assignments);
+
+  const onDropToLocation = async (e, locationId) => {
+    const personId = e.dataTransfer.getData("text/plain");
+    // console.log(personId, locationId);
+    await assignPerson(personId, locationId);
+  };
 
   return (
     <div className="w-80 bg-white border-l shadow-lg border-gray-200">
@@ -21,6 +30,8 @@ const LocationsList = () => {
         {locations.map((item) => {
           return (
             <div
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => onDropToLocation(e, item.id)}
               key={item.id}
               className="border-2 border-dashed rounded-lg border-gray-400 bg-gray-100"
             >
